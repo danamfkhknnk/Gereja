@@ -25,6 +25,7 @@
                 <p class="alert" {{Session::get('alert-class', 'alert-info')}}>{{Session::get('message')}}</p>
               </div>
               @endif
+  
               @if ($errors->any())
               <div class="flex items-center p-2 mb-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
                 @foreach ($errors->all() as $item)
@@ -39,6 +40,7 @@
               </div>
               @endif
             </div>
+            
             <input class="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded" type="text" placeholder="Nama" name="name" value="{{ old('name')}}" autoFocus />
             <input class="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4" type="password" placeholder="Password" name="password" />
                         
@@ -54,15 +56,24 @@
      </div>
      <div class="relative w-full h-full z-[-99]" data-carousel="slide" id="testimonialCarousel">
       <div class="relative h-full overflow-hidden rounded-lg ">
+    
        <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
         <img src="{{ asset('assets/1.jpg')}}" class="absolute right-0 top-0 w-full object-cover h-full " alt="">
+        
        </div>
        <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
         <img src="{{ asset('assets/2.jpg')}}" class="absolute right-0 top-0 w-full object-cover h-full " alt="">
+        
        </div>
+      
       </div>
     </div>
     </div>
+  
+  
+  
+  
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init();
