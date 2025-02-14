@@ -46,7 +46,7 @@
               <button class="mt-2 bg-primary hover:bg-primary/50 px-6 py-2 text-white uppercase rounded text-xs tracking-wider" name="submit" type="submit">
                 Login
               </button>
-              <a class="mt-2 bg-primary hover:bg-primary/50 px-6 py-2 text-white uppercase rounded text-xs tracking-wider" href="{{url('/')}}">
+              <a class="mt-2 bg-red-700 hover:bg-primary/50 px-6 py-2 text-white uppercase rounded text-xs tracking-wider" href="{{url('/')}}">
                Kembali
               </a>
             </div> 

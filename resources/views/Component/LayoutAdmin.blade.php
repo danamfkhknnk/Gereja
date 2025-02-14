@@ -28,12 +28,28 @@
             <div class="flex items-center">
                 <div class="flex items-center ms-3">
                   <div>
-                    <a type="button" class="flex rounded-full focus:ring-4 focus:ring-secondary " href="{{url('/logout')}}">
-                      <svg class="flex-shrink-0 w-5 h-5 text-secondary transition duration-75  group-hover: dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
+                    <button type="button" data-modal-target="small-modal-1" data-modal-toggle="small-modal-1" class="flex rounded-full focus:ring-4 focus:ring-secondary/50 " >
+                      <svg class="flex-shrink-0 w-5 h-5 text-secondary transition duration-75  " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
                      </svg>        
-                    </a>
+                    </button>
+
+                     <div id="small-modal-1" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                         <div class="relative w-full max-w-sm max-h-full ">
+                             <!-- Modal content -->
+                             <div class="relative text-center bg-white rounded-lg shadow-md ">
+                               <!-- Modal body -->
+                               <div class="p-3">
+                                     <h2 class="font-semibold text-lg">Yakin Ingin Logout?</h2>  
+                                     <div class="flex flex-col- justify-between text-white">
+                                       <button type="button" class="py-1 px-2 bg-red-700 font-semibold rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2" data-modal-hide="small-modal-1">Tidak</button>
+                                       <a class="py-1 px-6 bg-primary font-semibold rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2" href="{{ url('/logout')}}">Ya</a>
+                                     </div>
+                               </div>        
+                             </div>
+                         </div>
                   </div>
+
                 </div>
               </div>
           </div>
