@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>GEREJA</title>
+    <title>GITJ PUNCEL</title>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
     <style>
@@ -45,6 +45,6 @@
     </script>
 
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 </html>

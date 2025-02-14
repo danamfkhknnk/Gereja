@@ -2,7 +2,10 @@
     <div class="relative w-full h-screen">
      <div class="absolute inset-0 flex flex-col justify-center text-center items-center text-white z-20">
       <p class="lg:text-5xl text-md md:text-3xl font-bold uppercase" data-aos="fade-up">
-       gereja
+        GITJ PUNCEL
+      </p>
+      <p class="lg:text-5xl text-md md:text-3xl font-bold uppercase" data-aos="fade-up">
+        Gereja Injili di Tanah Jawa
       </p>
      </div>
      <div class="relative w-full h-full z-[-99]" data-carousel="slide" id="testimonialCarousel">

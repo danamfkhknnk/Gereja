@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>GEREJA</title>
+    <title>GITJ PUNCEL</title>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
 </head>
