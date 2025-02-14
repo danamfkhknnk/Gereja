@@ -10,9 +10,10 @@
   <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
     <nav>
       <ul class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
-        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-primary/80" href="#tentang">Tentang</a></li>
-        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-primary/80" href="#kamar">Kamar</a></li>
-        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-primary/80" href="#testi">Testimoni</a></li>
+        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-primary/80 lg:mb-0 mb-2" href="#sejarah">Sejarah</a></li>
+        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-primary/80 lg:mb-0 mb-2" href="#ibadah">Jadwal</a></li>
+        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-primary/80 lg:mb-0 mb-2" href="#struktur">Pengurus</a></li>
+        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-primary/80 lg:mb-0 mb-2" href="#kegiatan">Kegiatan</a></li>
         <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-primary/80 lg:mb-0 mb-2" href="#kontak">Kontak</a></li>
         <li class="text-center text-secondary"><a class="py-1 px-2 bg-primary/80 font-semibold rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2" href="{{ url('/login')}}">Login</a></li>
       </ul>
