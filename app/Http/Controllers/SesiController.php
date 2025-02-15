@@ -15,7 +15,10 @@ class SesiController extends Controller
     }
 
     public function index(){
-        return view('Admin.Pengguna.Pengguna');
+
+        $pengguna = User::all();
+
+        return view('Admin.Pengguna.Pengguna', compact('pengguna'));
     }
     public function register(Request $request){
         $request->validate( [

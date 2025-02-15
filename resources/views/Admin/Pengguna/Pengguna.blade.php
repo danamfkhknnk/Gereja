@@ -24,7 +24,6 @@
           </div>
           @endif
       </div>
-      
     </div>
 </div>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -38,41 +37,26 @@
                   Nama
               </th>
               <th scope="col" class="px-6 py-3">
-                  Tipe
+                  Password
               </th>
               <th scope="col" class="px-6 py-3">
-                  Status
-              </th>
-              <th scope="col" class="px-6 py-3">
-                 Gambar
-              </th>
-              <th scope="col" class="px-6 py-3">
-                  Action
+                  Aksi
               </th>
           </tr>
       </thead>
       <tbody>
+     @foreach ($pengguna as $pengguna)
+         
      
           <tr class="bg-white border-b  hover:bg-gray-50 ">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                
+                {{$pengguna->id}}
               </th>
               <td class="px-6 py-4">
-                 
+                 {{$pengguna->name}}
               </td>
               <td class="px-6 py-4">
-                 
-              </td>
-              <td class="px-6 py-4">
-                  
-              </td>
-              <td class="px-6 py-4">
-                <div class="grid lg:grid-cols-4 gap-1">
-                   
-                    <img src="{{ asset('gambarkamar/' ) }}" alt="Gambar Kamar" width="150px">
-                
-                </div>
-                
+                 {{$pengguna->password}}
               </td>
               <td class="flex px-6 py-4">
                   <a href={{url('admin/kamar/'.'/edit')}} class="font-medium text-blue-600  hover:underline">
@@ -88,7 +72,7 @@
                   </a>
               </td>
           </tr>
-          
+          @endforeach
       </tbody>
   </table>
 </div>
