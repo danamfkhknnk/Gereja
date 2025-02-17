@@ -19,5 +19,7 @@ Route::get('/admin/pengurus', [App\Http\Controllers\PengurusController::class, '
 Route::get('/admin/warta', [App\Http\Controllers\WartaController::class, 'index'])->name('warta');
 
 Route::get('/admin/pengguna', [App\Http\Controllers\SesiController::class, 'index'])->name('pengguna');
+Route::post('/admin/pengguna/tambah', [App\Http\Controllers\SesiController::class, 'register'])->name('register');
 Route::post('/admin/pengguna/{id}/edit', [App\Http\Controllers\SesiController::class, 'edit'])->name('editPengguna');
+Route::get('/admin/pengguna/{id}/delete', [App\Http\Controllers\SesiController::class, 'delete'])->name('deletePengguna');
 });

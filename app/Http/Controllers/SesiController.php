@@ -28,9 +28,9 @@ class SesiController extends Controller
 
         User::create( attributes : $request->only('name','password'));
         // // Flash message untuk sukses
-        Session::flash('message', 'Registrasi Berhasil, Silahkan Cek Email Anda untuk Verifikasi.');
+        Session::flash('message', 'Berhasil Tambah Data');
 
-        return redirect()->route('login');
+        return redirect()->route('pengguna');
     }
 
     public function aksilogin(Request $request){
@@ -48,7 +48,7 @@ class SesiController extends Controller
         if(Auth::attempt($infologin)) {
             return redirect('/admin/dashboard');
         }else{
-            return redirect('/login')->withErrors('Email dan password yang dimasukkan salah')->withInput();
+            return redirect('/login')->withErrors('Data yang dimasukkan salah')->withInput();
         }
     }
 
@@ -72,6 +72,15 @@ class SesiController extends Controller
 
         $user->save();
         Session::flash('message', 'Berhasil Update Data');
+        return redirect()->route('pengguna');
+    }
+
+    public function delete($id)
+    {
+        // Find the room by ID
+        $user = User::findOrFail($id);
+        $user->delete();
+        Session::flash('message', 'Berhasil Hapus Data');
         return redirect()->route('pengguna');
     }
 
