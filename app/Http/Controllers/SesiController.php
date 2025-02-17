@@ -52,6 +52,29 @@ class SesiController extends Controller
         }
     }
 
+    public function edit(Request $request, $id){
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        $user = User::findOrFail($id);
+        
+        // Update nama jika diisi
+        if ($request->filled('name')) {
+            $user->name = $request->name;
+        }
+
+        // Update password jika diisi
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->save();
+        Session::flash('message', 'Berhasil Update Data');
+        return redirect()->route('pengguna');
+    }
+
     function logout(){
         Auth::logout();
         return redirect('/');
