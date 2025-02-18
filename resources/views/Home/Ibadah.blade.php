@@ -8,7 +8,7 @@
             <h2 class="text-xl font-bold mb-2">
                 Sekolah Minggu
             </h2>           
-              <img class="w-full h-52 object-cover rounded-t-lg" src="{{ asset('gambarkamar/') }}" />
+              
           <div class="p-2 flex justify-between">
            <p class="text-gray-700 mb-2 font-semibold">
             Waktu : 
@@ -45,7 +45,7 @@
             <h2 class="text-xl font-bold mb-2">
                 Sekolah Minggu
             </h2>           
-              <img class="w-full h-52 object-cover rounded-t-lg" src="{{ asset('gambarkamar/') }}" />
+             
           <div class="p-2 flex justify-between">
            <p class="text-gray-700 mb-2 font-semibold">
             Waktu : 

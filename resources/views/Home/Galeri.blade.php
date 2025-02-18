@@ -1,10 +1,10 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen ">
     <div class="relative w-full h-screen ">
      <div class="absolute inset-0 flex flex-col justify-center text-center items-center backdrop-blur-sm text-white z-20">
-      <p class="lg:text-5xl text-md md:text-3xl font-bold uppercase" data-aos="fade-up">
+      <p class="lg:text-5xl text-md md:text-3xl font-bold uppercase font" data-aos="fade-up">
         GITJ PUNCEL
       </p>
-      <p class="lg:text-5xl text-md md:text-3xl font-bold uppercase" data-aos="fade-up">
+      <p class="lg:text-5xl text-md md:text-3xl uppercase font-mono" data-aos="fade-up">
         Gereja Injili di Tanah Jawa
       </p>
      </div>

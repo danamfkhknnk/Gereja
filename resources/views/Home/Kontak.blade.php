@@ -38,7 +38,7 @@
           </div>
       </div>
       <div>
-        <div class="text-center text-sm py-2 border-t-2 border-gray-300/50 bg-primary text-white">Copyright © Kost Putra Tentrem Mulyo 2024</div>
+        <div class="text-center text-sm py-2 border-t-2 border-gray-300/50 bg-primary text-white">Copyright © GITJ Puncel 2025</div>
       </div>
     </div>
   </div>
