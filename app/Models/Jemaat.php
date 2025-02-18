@@ -10,4 +10,8 @@ class Jemaat extends Model
         'nama',
         'alamat'
     ];
+
+    function penguruses(){
+        return $this->hasMany(Penguruses::class);
+    }
 }

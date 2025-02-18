@@ -18,9 +18,13 @@ Route::post('/admin/jemaat/tambah', [App\Http\Controllers\JemaatController::clas
 Route::post('/admin/jemaat/{id}/edit', [App\Http\Controllers\JemaatController::class, 'edit'])->name('editJemaat');
 Route::get('/admin/jemaat/{id}/delete', [App\Http\Controllers\JemaatController::class, 'delete'])->name('deleteJemaat');
 
-Route::get('/admin/kegiatan', [App\Http\Controllers\KegiatanController::class, 'index'])->name('kegiatan');
 Route::get('/admin/keuangan', [App\Http\Controllers\KeuanganController::class, 'index'])->name('keuangan');
+
 Route::get('/admin/pengurus', [App\Http\Controllers\PengurusController::class, 'index'])->name('pengurus');
+Route::post('/admin/pengurus/tambah', [App\Http\Controllers\PengurusController::class, 'add'])->name('addPengurus');
+Route::post('/admin/pengurus/{id}/edit', [App\Http\Controllers\PengurusController::class, 'edit'])->name('editPengurus');
+Route::get('/admin/pengurus/{id}/delete', [App\Http\Controllers\PengurusController::class, 'delete'])->name('deletePengurus');
+
 Route::get('/admin/warta', [App\Http\Controllers\WartaController::class, 'index'])->name('warta');
 Route::post('/admin/warta/tambah', [App\Http\Controllers\WartaController::class, 'add'])->name('addwarta');
 Route::post('/admin/warta/{id}/edit', [App\Http\Controllers\WartaController::class, 'edit'])->name('editWarta');
