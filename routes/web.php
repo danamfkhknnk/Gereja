@@ -12,7 +12,12 @@ Route::middleware(['auth'])->group(function(){
 Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('dashboard');
 Route::get('/admin/jadwal', [App\Http\Controllers\JadwalController::class, 'index'])->name('jadwal');
 Route::get('/admin/informasi', [App\Http\Controllers\InformasiController::class, 'index'])->name('informasi');
-Route::get('/admin/jemaah', [App\Http\Controllers\JemaahController::class, 'index'])->name('jemaah');
+
+Route::get('/admin/jemaat', [App\Http\Controllers\JemaatController::class, 'index'])->name('jemaat');
+Route::post('/admin/jemaat/tambah', [App\Http\Controllers\JemaatController::class, 'add'])->name('addJemaat');
+Route::post('/admin/jemaat/{id}/edit', [App\Http\Controllers\JemaatController::class, 'edit'])->name('editJemaat');
+Route::get('/admin/jemaat/{id}/delete', [App\Http\Controllers\JemaatController::class, 'delete'])->name('deleteJemaat');
+
 Route::get('/admin/kegiatan', [App\Http\Controllers\KegiatanController::class, 'index'])->name('kegiatan');
 Route::get('/admin/keuangan', [App\Http\Controllers\KeuanganController::class, 'index'])->name('keuangan');
 Route::get('/admin/pengurus', [App\Http\Controllers\PengurusController::class, 'index'])->name('pengurus');
