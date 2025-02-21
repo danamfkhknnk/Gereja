@@ -12,6 +12,7 @@ Route::middleware(['auth'])->group(function(){
 Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('dashboard');
 Route::get('/admin/jadwal', [App\Http\Controllers\JadwalController::class, 'index'])->name('jadwal');
 Route::get('/admin/informasi', [App\Http\Controllers\InformasiController::class, 'index'])->name('informasi');
+Route::put('/admin/informasi/{id}/edit', [App\Http\Controllers\InformasiController::class, 'edit'])->name('editInformasi');
 
 Route::get('/admin/jemaat', [App\Http\Controllers\JemaatController::class, 'index'])->name('jemaat');
 Route::post('/admin/jemaat/tambah', [App\Http\Controllers\JemaatController::class, 'add'])->name('addJemaat');

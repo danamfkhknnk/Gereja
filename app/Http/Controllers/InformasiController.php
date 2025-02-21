@@ -9,7 +9,7 @@ class InformasiController extends Controller
 {
     public function index(){
 
-        $info = Informasi::all();
+        $info = Informasi::where('id', '1')->get();
 
         return view('Admin.Informasi.Informasi', compact('info'));
     }
