@@ -41,6 +41,7 @@
       </div>
       @enderror
     </div>
+    <div class="grid grid-cols-2 gap-4 mb-2">
     <div class="relative z-0 w-full mb-5 group">
       <label for="visi" class="block mb-2 text-sm font-medium text-gray-900">Visi</label>
       <textarea type="text" name="visi" id="visi" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500">{{$info->visi}}</textarea>
@@ -70,6 +71,7 @@
         </div>
       </div>
   @enderror
+    </div>
     </div>
     <div class="grid grid-cols-2 gap-4 mb-2">
     <div class="relative z-0 w-full mb-5 group">
@@ -142,7 +144,22 @@
 <div class="grid grid-cols-2 gap-4 mb-2">
     <div class="relative z-0 w-full mb-5 group">
         <label for="galeri" class="block mb-2 text-sm font-medium text-gray-900">Galeri</label>
-        <input id="galeri" name="galeri" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none " type="file" multiple>
+        <div class="pb-2">
+          @if ($info->galeri)
+          <div class="grid lg:grid-cols-6 md:grid-cols-2 gap-4">
+            @foreach (explode(',', $info->galeri) as $image)
+                <div class="flex flex-col ">
+                  <label class="text-sm mb-1 font-semibold">
+                    <input type="checkbox" name="delete_images[]" value="{{ $image }}"> Hapus
+                </label>
+                    <img src="{{ asset('informasi/' . $image) }}" width="200px" alt="{{ $image }}">
+                    
+                </div>
+            @endforeach
+        </div>
+          @endif
+        </div>
+        <input id="galeri" name="galeri[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none " type="file" multiple>
         @error('galeri')
         <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
           <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -157,6 +174,16 @@
       </div>
     <div class="relative z-0 w-full mb-5 group">
         <label for="logo" class="block mb-2 text-sm font-medium text-gray-900">Logo</label>
+        <div class="pb-2">
+          @if ($info->logo)
+            <div class="grid lg:grid-cols-6 md:grid-cols-2">
+            @foreach (explode(',', $info->logo) as $image)
+                <img src="{{ asset('informasi/' . $image) }}"  width="200px">
+            @endforeach
+        </div>
+          @endif
+        </div>
+        
         <input id="logo" name="logo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none " type="file" multiple>
         @error('logo')
         <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
