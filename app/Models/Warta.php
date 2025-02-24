@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Warta extends Model
 {
@@ -11,4 +12,13 @@ class Warta extends Model
         'bacaan',
         'nyanyian',
     ];
+
+    // public function jadwal(): HasMany
+    // {
+    //     return $this->hasMany(Jadwal::class);
+    // }
+
+    function jadwal(){
+        return $this->hasMany(Jadwal::class);
+    }
 }

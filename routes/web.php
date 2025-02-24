@@ -10,7 +10,13 @@ Route::get('/logout', [App\Http\Controllers\SesiController::class, 'logout'])->n
 
 Route::middleware(['auth'])->group(function(){
 Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('dashboard');
+
 Route::get('/admin/jadwal', [App\Http\Controllers\JadwalController::class, 'index'])->name('jadwal');
+Route::post('/admin/jadwal/tambah', [App\Http\Controllers\JadwalController::class, 'add']);
+Route::get('/admin/jadwal/{id}/delete', [App\Http\Controllers\JadwalController::class, 'delete']);
+Route::post('/admin/jadwal/{id}/edit', [App\Http\Controllers\JadwalController::class, 'edit']);
+Route::get('/admin/jadwal/{id}/edit', [App\Http\Controllers\JadwalController::class, 'update']);
+
 Route::get('/admin/informasi', [App\Http\Controllers\InformasiController::class, 'index'])->name('informasi');
 Route::put('/admin/informasi/{id}/edit', [App\Http\Controllers\InformasiController::class, 'edit'])->name('editInformasi');
 
@@ -24,6 +30,7 @@ Route::get('/admin/keuangan', [App\Http\Controllers\KeuanganController::class, '
 Route::get('/admin/pengurus', [App\Http\Controllers\PengurusController::class, 'index'])->name('pengurus');
 Route::post('/admin/pengurus/tambah', [App\Http\Controllers\PengurusController::class, 'add'])->name('addPengurus');
 Route::post('/admin/pengurus/{id}/edit', [App\Http\Controllers\PengurusController::class, 'edit'])->name('editPengurus');
+Route::get('/admin/pengurus/{id}/edit', [App\Http\Controllers\PengurusController::class, 'update']);
 Route::get('/admin/pengurus/{id}/delete', [App\Http\Controllers\PengurusController::class, 'delete'])->name('deletePengurus');
 
 Route::get('/admin/warta', [App\Http\Controllers\WartaController::class, 'index'])->name('warta');

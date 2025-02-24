@@ -15,54 +15,30 @@ class PengurusSeed extends Seeder
     {
         DB::table('penguruses')->insertOrIgnore([
             ['jemaat_id' => null,
-            'posisi' => 'Pendeta'],
+            'posisi' => 'Ketua Bidang Marturia'],
         [
             'jemaat_id' => null,
-            'posisi' => 'Majelis 1'
+            'posisi' => 'Sekretaris Umum'
         ],
         [
             'jemaat_id' => null,
-            'posisi' => 'Majelis 2'
+            'posisi' => 'Wakil Sekretaris Umum'
         ],
         [
             'jemaat_id' => null,
-            'posisi' => 'Majelis 3'
+            'posisi' => 'Bendahara Umum'
         ],
         [
             'jemaat_id' => null,
-            'posisi' => 'Majelis 4'
+            'posisi' => 'Wakil Bendahara Umum'
         ],
         [
             'jemaat_id' => null,
-            'posisi' => 'Majelis 5'
+            'posisi' => 'Guru Sekolah Minggu'
         ],
         [
             'jemaat_id' => null,
-            'posisi' => 'Majelis 6'
-        ],
-        [
-            'jemaat_id' => null,
-            'posisi' => 'Majelis 7'
-        ],
-        [
-            'jemaat_id' => null,
-            'posisi' => 'Majelis 8'
-        ],
-        [
-            'jemaat_id' => null,
-            'posisi' => 'Majelis 9'
-        ],
-        [
-            'jemaat_id' => null,
-            'posisi' => 'Majelis 10'
-        ],
-        [
-            'jemaat_id' => null,
-            'posisi' => 'Mejlis 11'
-        ],
-        [
-            'jemaat_id' => null,
-            'posisi' => 'Mejlis 12'
+            'posisi' => 'Koster'
         ],
 
         ]);

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('penguruses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jemaat_id')->constrained();
+            $table->foreignId('jemaat_id')->nullable()->constrained();
             $table->string('posisi',255);
  
             $table->timestamps();
