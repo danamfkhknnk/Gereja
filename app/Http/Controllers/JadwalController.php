@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jadwal;
 use App\Models\Jemaat;
 use App\Models\Warta;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -27,8 +28,10 @@ class JadwalController extends Controller
         $keyboard = Jemaat::all();
         $lcd = Jemaat::all();
         $wartaadd = warta::all();
+       
 
         $jadwal = Jadwal::FindOrFail($id);
+        $jadwal->waktu = Carbon::parse($jadwal->waktu);
         return view('Admin.Jadwal.edit', compact('jadwal','firman','keyboard','lcd','wartaadd'));
     }
 
@@ -38,7 +41,7 @@ class JadwalController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'jenis' => 'required|in:ibadah,kegiatan', // Pastikan hanya 'ibadah' atau 'kegiatan'
+            'jenis' => 'required|in:ibadah,acara', // Pastikan hanya 'ibadah' atau 'kegiatan'
             'waktu' => 'required|date|after_or_equal:now', // Waktu tidak boleh lebih dari waktu sekarang
             'warta_id' => 'required|exists:wartas,id', // Pastikan warta_id ada di tabel wartas
             'foto.*' => 'image|mimes:jpeg,png,jpg',
@@ -80,7 +83,7 @@ class JadwalController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'jenis' => 'required|in:ibadah,kegiatan', // Pastikan hanya 'ibadah' atau 'kegiatan'
+            'jenis' => 'required|in:ibadah,acara', // Pastikan hanya 'ibadah' atau 'kegiatan'
             'waktu' => 'required|date|after_or_equal:now', // Waktu tidak boleh lebih dari waktu sekarang
             'warta_id' => 'required|exists:wartas,id', // Pastikan warta_id ada di tabel wartas
             'foto.*' => 'image|mimes:jpeg,png,jpg',
@@ -102,25 +105,34 @@ class JadwalController extends Controller
         ]);
     
         $jadwal = Jadwal::findOrFail($id);
+
         $data = $request->only(['nama', 'deskripsi', 'jenis', 'waktu', 'warta_id', 'pembawa_firman','keyboard','lcd']);
     
         // Upload gambar baru
+        // Hapus foto lama jika ada
+
         if ($files = $request->file('foto')) {
             $uploadedImages = []; // Array untuk menyimpan nama file
             foreach ($files as $file) {
                 $fileName = date('YmdHis') . "_" . $file->getClientOriginalName();
-                $file->move(public_path('foto'), $fileName); // Pindahkan file ke direktori yang ditentukan
+                $file->move(public_path('foto'), $fileName);
                 $uploadedImages[] = $fileName; // Tambahkan nama file ke array
             }
-    
-            // Gabungkan gambar baru dengan gambar lama
-            $existingImages = $jadwal->foto ? explode(',', $jadwal->foto) : [];
-            $data['foto'] = implode(',', array_merge($existingImages, $uploadedImages)); // Gabungkan nama file menjadi string
+            $jadwal['foto'] = implode(',', $uploadedImages);
         }
+        
+
         $jadwal->update($data);
 
         Session::flash('message', 'Update Data Berhasil');
-        
+        return redirect()->route('jadwal', ['id' => $jadwal->id]);
+    }
+
+    public function selesai($id){
+        $jadwal = Jadwal::findOrFail($id);
+        $jadwal->status = 'selesai';
+        $jadwal->save();
+        Session::flash('message', 'Update Data Berhasil');
         return redirect()->route('jadwal', ['id' => $jadwal->id]);
     }
 

@@ -118,8 +118,8 @@
     <div>
       <label for="jenis" class="block mb-2 text-sm font-medium text-gray-900 ">Jenis</label>
       <select name="jenis" id="jenis" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  ">
-            <option value="ibadah">Ibadah</option>
-            <option value="kegiatan">Kegiatan</option>
+            <option value="ibadah" {{ $jadwal->jenis == 'ibadah' ? 'selected' : '' }}>Ibadah</option>
+            <option value="acara" {{ $jadwal->jenis == 'acara' ? 'selected' : '' }}>Acara</option>
       </select>
   </div>
   </div>
@@ -128,16 +128,19 @@
     <textarea type="text"  name="deskripsi" id="deskripsi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  "> {{$jadwal->deskripsi}}</textarea>
   </div>
   <div class="grid grid-cols-2 gap-4 mb-2">
-    
     <div>
-        <label for="waktu" class="block mb-2 text-sm font-medium text-gray-900 ">Waktu</label>
-        <input type="datetime-local" name="waktu" id="waktu" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  "  />
+      <label for="waktu" class="block mb-2 text-sm font-medium text-gray-900">Waktu</label>
+      <input type="datetime-local" name="waktu" id="waktu" 
+             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+             value="{{ $jadwal->waktu->format('Y-m-d\TH:i') }}" />
     </div>
     <div>
       <label for="warta_id" class="block mb-2 text-sm font-medium text-gray-900 ">Warta</label>
       <select name="warta_id" id="warta_id" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  ">
         @foreach ($wartaadd as $wartaadd)
-            <option value="{{ $wartaadd->id }}">{{ $wartaadd->warta }}</option>
+        <option value="{{ $wartaadd->id }}" {{ $wartaadd->id == $jadwal->warta_id ? 'selected' : '' }}>
+          {{ $wartaadd->warta }}
+        </option>
         @endforeach
       </select>
   </div>
@@ -148,7 +151,9 @@
         <label for="pembawa_firman" class="block mb-2 text-sm font-medium text-gray-900 ">Pembawa Firman</label>
         <select name="pembawa_firman" id="pembawa_firman" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  ">
           @foreach ($firman as $firman)
-              <option value="{{ $firman->id }}">{{ $firman->nama }}</option>
+          <option value="{{ $firman->id }}" {{ $firman->id == $jadwal->pembawa_firman ? 'selected' : '' }}>
+            {{ $firman->nama }}
+          </option>
           @endforeach
         </select>
     </div>
@@ -156,7 +161,9 @@
       <label for="lcd" class="block mb-2 text-sm font-medium text-gray-900 ">LCD</label>
       <select name="lcd" id="lcd" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  ">
         @foreach ($lcd as $lcd)
-            <option value="{{ $lcd->id }}">{{ $lcd->nama }}</option>
+        <option value="{{ $lcd->id }}" {{ $lcd->id == $jadwal->lcd ? 'selected' : '' }}>
+          {{ $lcd->nama }}
+        </option>
         @endforeach
       </select>
   </div>
@@ -179,11 +186,13 @@
         <label for="keyboard" class="block mb-2 text-sm font-medium text-gray-900 ">Keyboard</label>
         <select name="keyboard" id="keyboard" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  ">
           @foreach ($keyboard as $keyboard)
-              <option value="{{ $keyboard->id }}">{{ $keyboard->nama }}</option>
+          <option value="{{ $keyboard->id }}" {{ $keyboard->id == $jadwal->keyboard ? 'selected' : '' }}>
+            {{ $keyboard->nama }}
+          </option>
           @endforeach
         </select>
     </div>
-    
+  
   </div> 
     <button type="submit" class=" uppercase text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan</button>
 </form>

@@ -16,6 +16,7 @@ class Jadwal extends Model
         'nama',
         'deskripsi',
         'jenis',
+        'status',
         'waktu',
         'warta_id',
         'pembawa_firman',
