@@ -2,17 +2,8 @@
 
 @section('content')
     
-<div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-2">
-    <div class="flex">
-        <h2 class="uppercase text-xl p-2 font-bold">Data jadwal Ibadah</h2> 
-    </div>
-    <div class="flex gap-4">
-      <div class="pt-2">
-        <button data-modal-target="add-modal" data-modal-toggle="add-modal" class="font-medium text-blue-600  hover:underline">
-            <svg class="w-10 h-10 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4.243a1 1 0 1 0-2 0V11H7.757a1 1 0 1 0 0 2H11v3.243a1 1 0 1 0 2 0V13h3.243a1 1 0 1 0 0-2H13V7.757Z" clip-rule="evenodd"/>
-              </svg>
-        </button>
+
+
         <div id="add-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
           <div class="relative p-4 w-full max-w-3xl max-h-full">
               <!-- Modal content -->
@@ -22,7 +13,7 @@
                       <h3 class="text-xl font-semibold text-gray-900 ">
                         Tambah Data jadwal
                       </h3>
-                      <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="add-modal">
+                      <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " data-modal-hide="add-modal">
                           <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                           </svg>
@@ -57,25 +48,14 @@
                               <input type="datetime-local" name="waktu" id="waktu" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  "  />
                           </div>
                           <div id="warta-container">
-                            <div class="flex">
-                              <label for="warta_id" class="block mb-2 text-sm font-medium text-gray-900">Warta</label>
-                              <button type="button" id="add-warta">
-                                <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                </svg>
-                              </button>
-                              <button type="button" id="undo-warta" class=" hidden">
-                                <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                </svg>
-                                
-                              </button>
-                            </div>
+                            <label for="warta_id" class="block mb-2 text-sm font-medium text-gray-900">Warta</label>
                             <select name="warta_id[]" id="warta_id" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" >
                               @foreach ($wartaadd as $wartaadd)
                                   <option value="{{ $wartaadd->warta }}">{{ $wartaadd->warta }}</option>
                               @endforeach
                             </select>
+                            <button type="button" id="add-warta" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Tambah Warta</button>
+                            <button type="button" id="undo-warta" class="mt-2 bg-red-500 text-white px-4 py-2 rounded hidden">Undo</button>
                         </div>
                     </div>
                     
@@ -119,142 +99,61 @@
               </div>
           </div>
       </div>
-      </div>
+@foreach ($jadwals as $jadwal)
+<div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-2">
+    <div class="flex">
+        <h2 class="uppercase text-xl font-bold" >Data {{$jadwal->jenis}} {{ $jadwal->nama}} Pada {{$jadwal->waktu}} </h2> 
+    </div>
+    <div class="flex gap-4">
       <div class="pt-2">
-          @if (Session::has('message'))
-          <div class="flex items-center  p-2 mb-2 text-sm text-blue-800 rounded-lg bg-red-50 " >
+        <button data-modal-target="add-modal" data-modal-toggle="add-modal" class="font-medium text-blue-600  hover:underline">
+            <svg class="w-10 h-10 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4.243a1 1 0 1 0-2 0V11H7.757a1 1 0 1 0 0 2H11v3.243a1 1 0 1 0 2 0V13h3.243a1 1 0 1 0 0-2H13V7.757Z" clip-rule="evenodd"/>
+              </svg>
+        </button>
+    </div>
+    <div class="pt-2">
+        @if (Session::has('message'))
+        <div class="flex items-center  p-2 mb-2 text-sm text-blue-800 rounded-lg bg-red-50 " >
+          <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+          </svg>
+          <p class="alert" {{Session::get('alert-class', 'alert-info')}}>{{Session::get('message')}}</p>
+        </div>
+        @endif
+        <div class="flex gap-2">
+          @error('deskripsi')
+          <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
             <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
             </svg>
-            <p class="alert" {{Session::get('alert-class', 'alert-info')}}>{{Session::get('message')}}</p>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">{{$message}}</span>
+            </div>
           </div>
-          @endif
-          <div class="flex gap-2">
-            @error('nama')
-            <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-              <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-              </svg>
-              <span class="sr-only">Info</span>
-              <div>
-                <span class="font-medium">{{$message}}</span>
-              </div>
+          @enderror
+          @error('foto')
+          <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">{{$message}}</span>
             </div>
-            @enderror
-            @error('deskripsi')
-            <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-              <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-              </svg>
-              <span class="sr-only">Info</span>
-              <div>
-                <span class="font-medium">{{$message}}</span>
-              </div>
-            </div>
-            @enderror
-            @error('jenis')
-            <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-              <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-              </svg>
-              <span class="sr-only">Info</span>
-              <div>
-                <span class="font-medium">{{$message}}</span>
-              </div>
-            </div>
-            @enderror
-            @error('waktu')
-            <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-              <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-              </svg>
-              <span class="sr-only">Info</span>
-              <div>
-                <span class="font-medium">{{$message}}</span>
-              </div>
-            </div>
-            @enderror
-            @error('warta_id')
-            <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-              <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-              </svg>
-              <span class="sr-only">Info</span>
-              <div>
-                <span class="font-medium">{{$message}}</span>
-              </div>
-            </div>
-            @enderror
-            @error('pembawafirman')
-            <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-              <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-              </svg>
-              <span class="sr-only">Info</span>
-              <div>
-                <span class="font-medium">{{$message}}</span>
-              </div>
-            </div>
-            @enderror
-            @error('lcd')
-            <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-              <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-              </svg>
-              <span class="sr-only">Info</span>
-              <div>
-                <span class="font-medium">{{$message}}</span>
-              </div>
-            </div>
-            @enderror
-            @error('keyboard')
-            <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-              <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-              </svg>
-              <span class="sr-only">Info</span>
-              <div>
-                <span class="font-medium">{{$message}}</span>
-              </div>
-            </div>
-            @enderror
-            @error('foto')
-            <div class="flex items-center p-2 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
-              <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-              </svg>
-              <span class="sr-only">Info</span>
-              <div>
-                <span class="font-medium">{{$message}}</span>
-              </div>
-            </div>
-            @enderror
           </div>
-      </div>
-      
+          @enderror
+        </div>
     </div>
+  </div>
 </div>
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg  mb-2">
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
           <tr>
               <th scope="col" class="px-6 py-3">
-                  ID
-              </th>
-              <th scope="col" class="px-6 py-3">
-                  Nama
-              </th>
-              <th scope="col" class="px-6 py-3">
                   Deskripsi
-              </th>
-              <th scope="col" class="px-6 py-3">
-                 Waktu
-              </th>
-              <th scope="col" class="px-6 py-3">
-                 Warta
-              </th>
-              <th scope="col" class="px-6 py-3">
-                 Pelaksana
               </th>
               <th scope="col" class="px-6 py-3">
                  Foto
@@ -265,27 +164,9 @@
           </tr>
       </thead>
       <tbody>
-     @foreach ($jadwals as $jadwal)
           <tr class="bg-white border-b  hover:bg-gray-50 ">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                {{ $jadwal->id}}
-              </th>
-              <td class="px-6 py-4">
-                {{$jadwal->jenis}} {{ $jadwal->nama}}
-              </td>
               <td class="px-6 py-4">
                 {{$jadwal->deskripsi}}
-              </td>
-              <td class="px-6 py-4">
-                {{$jadwal->waktu}}
-              </td>
-              <td class="px-6 py-4">
-                {{$jadwal->warta_id}}
-              </td>
-              <td class="px-6 py-4">
-                Pendeta {{$jadwal->pembawafirman->nama}} </br>
-                Proyektor {{$jadwal->lcdjemaat->nama}} </br>
-                Keyboard {{$jadwal->keyboardjemaat->nama}}
               </td>
               <td class="px-6 py-4">
                     @foreach (explode(',', $jadwal->foto) as $image)
@@ -324,9 +205,7 @@
                         </div>        
                       </div>
                   </div>
-              </div>
-                
-                  
+              </div> 
                 </form>
                   <a href={{url('admin/jadwal/'.$jadwal->id.'/edit')}} class="font-medium text-blue-600  hover:underline">
                     <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -358,13 +237,40 @@
                     </div>
                 </div>
                 @endif
-                
               </td>
           </tr>
-          @endforeach
       </tbody>
   </table>
 </div>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mb-3">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Deskripsi
+                </th>
+                <th scope="col" class="px-6 py-3">
+                   Foto
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Aksi
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($jemaat as $warta)
+            <tr class="bg-white border-b  hover:bg-gray-50 ">
+                <td class="px-6 py-4">
+                  {{$warta->nama}}
+                </td>
+                <td class="px-6 py-4">
+                </td>
+            </tr>
+        </tbody>
+        @endforeach
+    </table>
+</div>
+@endforeach
 <script>
   let lastAddedWarta = null;
 

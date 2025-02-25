@@ -70,13 +70,26 @@
                      <span class="ms-3">Dashboard</span>
                   </a>
                </li>
+               
                <li>
-                  <a href={{url('admin/jadwal')}} class="flex items-center p-2  rounded-lg  hover:bg-gray-100  hover:text-primary  group">
+                  <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-100  hover:text-primary " aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                      <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m11.5 11.5 2.071 1.994M4 10h5m11 0h-1.5M12 7V4M7 7V4m10 3V4m-7 13H8v-2l5.227-5.292a1.46 1.46 0 0 1 2.065 2.065L10 17Zm-5 3h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/>
-                      </svg>                                      
-                     <span class="flex-1 ms-3 whitespace-nowrap">Jadwal</span>
-                  </a>
+                      </svg> 
+                     <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Kegiatan</span>
+                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                     </svg>
+                  </button>
+                  <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                        <li>
+                           <a href={{url('admin/jadwal')}} class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100  hover:text-primary ">Jadwal</a>
+                        </li>
+                        <li>
+                           <a href={{url('admin/riwayat')}} class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100  hover:text-primary">Riwayat</a>
+                        </li>
+                       
+                  </ul>
                </li>
                <li>
                   <a href={{url('admin/warta')}} class="flex items-center p-2  rounded-lg  hover:bg-gray-100  hover:text-primary  group">

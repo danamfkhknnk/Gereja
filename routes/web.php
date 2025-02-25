@@ -18,6 +18,9 @@ Route::post('/admin/jadwal/{id}/edit', [App\Http\Controllers\JadwalController::c
 Route::get('/admin/jadwal/{id}/edit', [App\Http\Controllers\JadwalController::class, 'update']);
 Route::post('/admin/jadwal/{id}/selesai', [App\Http\Controllers\JadwalController::class, 'selesai']);
 
+
+Route::get('/admin/riwayat/', [App\Http\Controllers\RiwayatController::class, 'index'])->name('riwayat');
+
 Route::get('/admin/informasi', [App\Http\Controllers\InformasiController::class, 'index'])->name('informasi');
 Route::put('/admin/informasi/{id}/edit', [App\Http\Controllers\InformasiController::class, 'edit'])->name('editInformasi');
 

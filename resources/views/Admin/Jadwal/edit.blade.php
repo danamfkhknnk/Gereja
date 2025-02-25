@@ -134,13 +134,24 @@
              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
              value="{{ $jadwal->waktu->format('Y-m-d\TH:i') }}" />
     </div>
-    <div>
-      <label for="warta_id" class="block mb-2 text-sm font-medium text-gray-900 ">Warta</label>
-      <select name="warta_id" id="warta_id" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  ">
+    <div id="warta-container">
+      <div class="flex">
+        <label for="warta_id" class="block mb-2 text-sm font-medium text-gray-900">Warta</label>
+        <button type="button" id="add-warta">
+          <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+          </svg>
+        </button>
+        <button type="button" id="undo-warta" class=" hidden">
+          <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+          </svg>
+          
+        </button>
+      </div>
+      <select name="warta_id[]" id="warta_id" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" >
         @foreach ($wartaadd as $wartaadd)
-        <option value="{{ $wartaadd->id }}" {{ $wartaadd->id == $jadwal->warta_id ? 'selected' : '' }}>
-          {{ $wartaadd->warta }}
-        </option>
+            <option value="{{ $wartaadd->warta }}">{{ $wartaadd->warta }}</option>
         @endforeach
       </select>
   </div>
@@ -196,5 +207,32 @@
   </div> 
     <button type="submit" class=" uppercase text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan</button>
 </form>
+<script>
+  let lastAddedWarta = null;
 
+  document.getElementById('add-warta').addEventListener('click', function() {
+      var newSelect = document.createElement('select');
+      newSelect.name = 'warta_id[]';
+      newSelect.className = 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full mt-2';
+
+
+      @foreach ($wartasel as $warta)
+          var option = document.createElement('option');
+          option.value = '{{ $warta->warta }}';
+          option.text = '{{ $warta->warta }}';
+          newSelect.appendChild(option);
+      @endforeach
+
+      document.getElementById('warta-container').appendChild(newSelect);
+      lastAddedWarta = newSelect;
+      document.getElementById('undo-warta').classList.remove('hidden');
+  });
+
+  document.getElementById('undo-warta').addEventListener('click', function() {
+      if (lastAddedWarta) {
+          lastAddedWarta.remove();
+          lastAddedWarta = null;
+      }
+  });
+</script>
 @endsection

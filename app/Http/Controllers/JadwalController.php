@@ -20,7 +20,7 @@ class JadwalController extends Controller
         $wartaadd = warta::all();
         $wartasel = warta::all();
 
-        $jadwals = Jadwal::with('pembawafirman','keyboardjemaat','lcdjemaat','warta')->get();
+        $jadwals = Jadwal::with('pembawafirman','keyboardjemaat','lcdjemaat')->where('status','pending')->get();
         return view('Admin.Jadwal.Jadwal', compact('jadwals','wartasel','firman','keyboard','lcd','wartaadd'));
     }
 
@@ -29,11 +29,11 @@ class JadwalController extends Controller
         $keyboard = Jemaat::all();
         $lcd = Jemaat::all();
         $wartaadd = warta::all();
-       
+        $wartasel = warta::all();
 
         $jadwal = Jadwal::FindOrFail($id);
         $jadwal->waktu = Carbon::parse($jadwal->waktu);
-        return view('Admin.Jadwal.edit', compact('jadwal','firman','keyboard','lcd','wartaadd'));
+        return view('Admin.Jadwal.edit', compact('jadwal','wartasel','firman','keyboard','lcd','wartaadd'));
     }
 
 
@@ -89,7 +89,7 @@ class JadwalController extends Controller
             'deskripsi' => 'required|string',
             'jenis' => 'required|in:ibadah,acara', // Pastikan hanya 'ibadah' atau 'kegiatan'
             'waktu' => 'required|date|after_or_equal:now', // Waktu tidak boleh lebih dari waktu sekarang
-            'warta_id' => 'required|exists:wartas,id', // Pastikan warta_id ada di tabel wartas
+            'warta_id.*' => 'required|string', // Pastikan warta_id ada di tabel wartas
             'foto.*' => 'image|mimes:jpeg,png,jpg',
             'pembawa_firman' => [
                 'required',
@@ -111,7 +111,10 @@ class JadwalController extends Controller
         $jadwal = Jadwal::findOrFail($id);
 
         $data = $request->only(['nama', 'deskripsi', 'jenis', 'waktu', 'warta_id', 'pembawa_firman','keyboard','lcd']);
-    
+
+        if (isset($data['warta_id']) && is_array($data['warta_id'])) {
+            $data['warta_id'] = implode(',', $data['warta_id']); // Menggabungkan array menjadi string
+        }
         // Upload gambar baru
         // Hapus foto lama jika ada
 
