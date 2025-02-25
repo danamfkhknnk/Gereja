@@ -42,10 +42,8 @@
                           <div>
                             <label for="jenis" class="block mb-2 text-sm font-medium text-gray-900 ">Jenis</label>
                             <select name="jenis" id="jenis" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  ">
-                    
                                   <option value="ibadah">Ibadah</option>
                                   <option value="acara">Acara</option>
-                      
                             </select>
                         </div>
                         </div>
@@ -54,22 +52,24 @@
                           <textarea type="text" name="deskripsi" id="deskripsi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  "  ></textarea>
                         </div>
                         <div class="grid grid-cols-2 gap-4 mb-2">
-                          
                           <div>
                               <label for="waktu" class="block mb-2 text-sm font-medium text-gray-900 ">Waktu</label>
                               <input type="datetime-local" name="waktu" id="waktu" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  "  />
                           </div>
-                          <div>
-                            <label for="warta_id" class="block mb-2 text-sm font-medium text-gray-900 ">Warta</label>
-                            <select name="warta_id" id="warta_id" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  ">
+                          <div id="warta-container">
+                            <label for="warta_id" class="block mb-2 text-sm font-medium text-gray-900">Warta</label>
+                            <select name="warta_id[]" id="warta_id" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" >
                               @foreach ($wartaadd as $wartaadd)
-                                  <option value="{{ $wartaadd->id }}">{{ $wartaadd->warta }}</option>
+                                  <option value="{{ $wartaadd->warta }}">{{ $wartaadd->warta }}</option>
                               @endforeach
                             </select>
+                            <button type="button" id="add-warta" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Tambah Warta</button>
+                            <button type="button" id="undo-warta" class="mt-2 bg-red-500 text-white px-4 py-2 rounded hidden">Undo</button>
                         </div>
-                        </div>
+                    </div>
+                    
+                        
                         <div class="grid grid-cols-2 gap-4 mb-2">
-                          
                           <div>
                               <label for="pembawa_firman" class="block mb-2 text-sm font-medium text-gray-900 ">Pembawa Firman</label>
                               <select name="pembawa_firman" id="pembawa_firman" class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  ">
@@ -106,7 +106,6 @@
                       </form>
                   </div>
               </div>
-
           </div>
       </div>
       </div>
@@ -270,7 +269,7 @@
                 {{$jadwal->waktu}}
               </td>
               <td class="px-6 py-4">
-                {{$jadwal->warta->warta}}
+                {{$jadwal->warta_id}}
               </td>
               <td class="px-6 py-4">
                 Pendeta {{$jadwal->pembawafirman->nama}} </br>
@@ -286,15 +285,37 @@
                 @if ($jadwal->status == 'selesai')
                 <a class="py-1 px-1 text-white bg-primary font-semibold rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2" href={{url('admin/kegiatan')}}>Lengkapi Data</a>
                 @else
-                <form action="{{url('admin/jadwal/'.$jadwal->id.'/selesai')}}" method="POST">
-                  @csrf
-                  @method('POST')
-                  <input type="hidden" name="status" value="selesai">
-                  <button type="submit">
-                    <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                      <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm13.707-1.293a1 1 0 0 0-1.414-1.414L11 12.586l-1.793-1.793a1 1 0 0 0-1.414 1.414l2.5 2.5a1 1 0 0 0 1.414 0l4-4Z" clip-rule="evenodd"/>
-                    </svg>
-                  </button>
+                <a data-modal-target="ubah-modal-{{ $jadwal->id }}" data-modal-toggle="ubah-modal-{{ $jadwal->id }}" class="font-medium text-blue-600  hover:underline cursor-pointer">
+                  <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm13.707-1.293a1 1 0 0 0-1.414-1.414L11 12.586l-1.793-1.793a1 1 0 0 0-1.414 1.414l2.5 2.5a1 1 0 0 0 1.414 0l4-4Z" clip-rule="evenodd"/>
+                  </svg>
+                </a>
+                <div id="ubah-modal-{{ $jadwal->id }}" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                  <div class="relative w-full max-w-sm max-h-full ">
+                      <!-- Modal content -->
+                      <div class="relative text-center bg-secondary rounded-lg shadow-md ">
+                        <!-- Modal body -->
+                        <div class="p-3">
+                          <svg class="mx-auto mb-2 text-gray-400 w-12 h-12 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                         </svg>
+                              <h2 class="font-semibold text-lg mb-2 text-dark">Selesaikan {{$jadwal->jenis}} <b>{{$jadwal->nama}}</b> ?</h2>    
+                              <div class="flex justify-between text-white">
+                                <button type="button" class="py-1 px-2 bg-red-700 font-semibold rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2" data-modal-hide="ubah-modal-{{ $jadwal->id }}">Tidak</button>
+                                <form action="{{url('admin/jadwal/'.$jadwal->id.'/selesai')}}" method="POST">
+                                  @csrf
+                                  @method('POST')
+                                  <input type="hidden" name="status" value="selesai">
+                                  <button type="submit" class="py-1 px-6 bg-primary font-semibold rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2">
+                                    Iya
+                                  </button>
+                              </div>
+                        </div>        
+                      </div>
+                  </div>
+              </div>
+                
+                  
                 </form>
                   <a href={{url('admin/jadwal/'.$jadwal->id.'/edit')}} class="font-medium text-blue-600  hover:underline">
                     <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -333,4 +354,33 @@
       </tbody>
   </table>
 </div>
+<script>
+  let lastAddedWarta = null;
+
+  document.getElementById('add-warta').addEventListener('click', function() {
+      var newSelect = document.createElement('select');
+      newSelect.name = 'warta_id[]';
+      newSelect.className = 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full mt-2';
+
+
+      @foreach ($wartasel as $warta)
+          var option = document.createElement('option');
+          option.value = '{{ $warta->warta }}';
+          option.text = '{{ $warta->warta }}';
+          newSelect.appendChild(option);
+      @endforeach
+
+      document.getElementById('warta-container').appendChild(newSelect);
+      lastAddedWarta = newSelect;
+      document.getElementById('undo-warta').classList.remove('hidden');
+  });
+
+  document.getElementById('undo-warta').addEventListener('click', function() {
+      if (lastAddedWarta) {
+          lastAddedWarta.remove();
+          lastAddedWarta = null;
+          this.classList.add('hidden');
+      }
+  });
+</script>
 @endsection

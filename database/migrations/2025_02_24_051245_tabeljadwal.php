@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('jenis', ['ibadah', 'acara']); // Kolom jenis
             $table->enum('status', ['selesai', 'pending'])->default('pending'); // Kolom jenis
             $table->datetime('waktu'); // Kolom waktu
-            $table->foreignId('warta_id')->constrained();; // Kolom relasi warta_id
+            $table->text('warta_id')->constrained(); // Kolom relasi warta_id
             $table->unsignedBigInteger('pembawa_firman'); // Kolom relasi pembawa firman
             $table->unsignedBigInteger('keyboard'); // Kolom relasi keyboard
             $table->unsignedBigInteger('lcd'); // Kolom relasi lcd

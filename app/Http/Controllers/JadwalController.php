@@ -18,9 +18,10 @@ class JadwalController extends Controller
         $keyboard = Jemaat::all();
         $lcd = Jemaat::all();
         $wartaadd = warta::all();
+        $wartasel = warta::all();
 
         $jadwals = Jadwal::with('pembawafirman','keyboardjemaat','lcdjemaat','warta')->get();
-        return view('Admin.Jadwal.Jadwal', compact('jadwals','firman','keyboard','lcd','wartaadd'));
+        return view('Admin.Jadwal.Jadwal', compact('jadwals','wartasel','firman','keyboard','lcd','wartaadd'));
     }
 
     public function update($id){
@@ -43,7 +44,7 @@ class JadwalController extends Controller
             'deskripsi' => 'required|string',
             'jenis' => 'required|in:ibadah,acara', // Pastikan hanya 'ibadah' atau 'kegiatan'
             'waktu' => 'required|date|after_or_equal:now', // Waktu tidak boleh lebih dari waktu sekarang
-            'warta_id' => 'required|exists:wartas,id', // Pastikan warta_id ada di tabel wartas
+            'warta_id.*' => 'required|string', // Pastikan warta_id ada di tabel wartas
             'foto.*' => 'image|mimes:jpeg,png,jpg',
             'pembawa_firman' => [
                 'required',
@@ -63,6 +64,9 @@ class JadwalController extends Controller
         ]);
         
         $jadwal = $request->all();
+        if (isset($jadwal['warta_id']) && is_array($jadwal['warta_id'])) {
+            $jadwal['warta_id'] = implode(',', $jadwal['warta_id']); // Menggabungkan array menjadi string
+        }
         if ($files = $request->file('foto')) {
             $uploadedImages = []; // Array untuk menyimpan nama file
             foreach ($files as $file) {
