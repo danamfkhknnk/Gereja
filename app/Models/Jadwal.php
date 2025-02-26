@@ -25,13 +25,13 @@ class Jadwal extends Model
         'foto',
     ];
 
-    // function warta(){
-    //     return $this->hasMany(Warta::class, 'warta_id');
-    // }
-
     function warta(): BelongsTo
     {
         return $this->belongsTo(Warta::class);
+    }
+
+    function persembahan(){
+        return $this->hasMany(Persembahan::class);
     }
 
 

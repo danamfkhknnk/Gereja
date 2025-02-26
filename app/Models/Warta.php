@@ -13,11 +13,6 @@ class Warta extends Model
         'nyanyian',
     ];
 
-    // public function jadwal(): HasMany
-    // {
-    //     return $this->hasMany(Jadwal::class);
-    // }
-
     function jadwal(){
         return $this->hasMany(Jadwal::class);
     }

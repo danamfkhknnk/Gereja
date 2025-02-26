@@ -15,6 +15,10 @@ class Jemaat extends Model
         return $this->hasMany(Penguruses::class);
     }
 
+    function persembahan(){
+        return $this->hasMany(Persembahan::class);
+    }
+    
     public function jadwalsAsPembawaFirman()
     {
         return $this->hasMany(Jadwal::class, 'pembawa_firman');

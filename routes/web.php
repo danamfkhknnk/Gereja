@@ -20,6 +20,12 @@ Route::post('/admin/jadwal/{id}/selesai', [App\Http\Controllers\JadwalController
 
 
 Route::get('/admin/riwayat/', [App\Http\Controllers\RiwayatController::class, 'index'])->name('riwayat');
+Route::get('/admin/riwayat/{id}/edit', [App\Http\Controllers\RiwayatController::class, 'update']);
+Route::post('/admin/riwayat/{id}/edit', [App\Http\Controllers\RiwayatController::class, 'edit']);
+
+
+Route::post('/admin/persembahan/tambah', [App\Http\Controllers\PersembahanController::class, 'add']);
+Route::get('/admin/persembahan/{id}/delete', [App\Http\Controllers\PersembahanController::class, 'delete']);
 
 Route::get('/admin/informasi', [App\Http\Controllers\InformasiController::class, 'index'])->name('informasi');
 Route::put('/admin/informasi/{id}/edit', [App\Http\Controllers\InformasiController::class, 'edit'])->name('editInformasi');
