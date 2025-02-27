@@ -147,6 +147,7 @@ class JadwalController extends Controller
     {
         // Find the room by ID
         $jadwal = Jadwal::findOrFail($id);
+        $jadwal->persembahan()->delete();
         $jadwal->delete();
         Session::flash('message', 'Berhasil Hapus Data');
         return redirect()->route('jadwal');

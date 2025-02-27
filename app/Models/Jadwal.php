@@ -30,6 +30,11 @@ class Jadwal extends Model
         return $this->belongsTo(Warta::class);
     }
 
+    function keuangan(){
+        return $this->hasMany(Keuangan::class);
+    }
+
+
     function persembahan(){
         return $this->hasMany(Persembahan::class);
     }

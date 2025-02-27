@@ -14,6 +14,12 @@ class Persembahan extends Model
         'jumlah',
     ];
 
+
+    function keuangan(){
+        return $this->hasMany(Keuangan::class, 'persembahan_id');
+    }
+
+
     function jemaat(): BelongsTo
     {
         return $this->belongsTo(Jemaat::class);

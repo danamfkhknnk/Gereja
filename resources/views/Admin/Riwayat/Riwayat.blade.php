@@ -366,7 +366,7 @@
                           <svg class="mx-auto mb-2 text-gray-400 w-12 h-12 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                          </svg>
-                              <h2 class="font-semibold text-lg mb-2 text-dark">Yakin Ingin Hapus <b>{{$item->nama}}</b> ?</h2>    
+                              <h2 class="font-semibold text-lg mb-2 text-dark">Yakin Ingin Hapus <b>{{$item->tipe}} {{$item->jemaat->nama ?? ''}}</b> ?</h2>    
                               <div class="flex justify-between text-white">
                                 <button type="button" class="py-1 px-2 bg-red-700 font-semibold rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2" data-modal-hide="delete-modal-{{ $item->id }}">Tidak</button>
                                 <a class="py-1 px-6 bg-primary font-semibold rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2" href={{url('admin/persembahan/'.$item->id.'/delete')}} >Ya</a>
