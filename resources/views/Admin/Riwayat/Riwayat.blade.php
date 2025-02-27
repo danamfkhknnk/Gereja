@@ -4,8 +4,7 @@
 @foreach ($jadwals as $jadwal)
 <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-2">
     <div class="flex">
-        <h2 class="uppercase text-xl font-bold" >Data {{$jadwal->jemaat_id}} {{ $jadwal->nama}} Pada {{$jadwal->waktu}} </h2> 
-        
+        <h2 class="uppercase text-xl font-bold" >Data {{$jadwal->jenis}} {{ $jadwal->nama}} </h2> 
     </div>
 
     <div class="flex gap-1 justify-end">
@@ -19,7 +18,28 @@
         </div>
         @endif
     </div>
-        <button data-modal-target="add-umum-{{$jadwal->id}}" data-modal-toggle="add-umum-{{$jadwal->id}}" class=" px-1  bg-primary/80 font-semibold text-sm rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 text-white">+Umum</button>
+    <button id="dropdownHoverButton-{{$jadwal->id}}" data-dropdown-toggle="dropdownHover-{{$jadwal->id}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-1 py-1 text-center inline-flex items-center " type="button">+Persembahan <svg class="w-2.5 h-2.5 ms-1 mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+      </svg>
+      </button>
+      <!-- Dropdown menu -->
+      <div id="dropdownHover-{{$jadwal->id}}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 ">
+          <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownHoverButton-{{$jadwal->id}}">
+            <li>
+              <a type="button" data-modal-target="add-umum-{{$jadwal->id}}" data-modal-toggle="add-umum-{{$jadwal->id}}" class="block px-4 py-2 hover:bg-gray-100 cursor-pointer">+Umum</a>
+            </li>
+            <li>
+              <a type="button" data-modal-target="add-perpuluhan-{{$jadwal->id}}" data-modal-toggle="add-perpuluhan-{{$jadwal->id}}" class="block px-4 py-2 hover:bg-gray-100 cursor-pointer ">+Perpuluhan</a>
+            </li>
+            <li>
+              <a type="button" data-modal-target="add-istimewa-{{$jadwal->id}}" data-modal-toggle="add-istimewa-{{$jadwal->id}}" class="block px-4 py-2 hover:bg-gray-100 cursor-pointer">+Istimewa</a>
+            </li>
+            <li>
+              <a type="button" data-modal-target="add-syukur{{$jadwal->id}}" data-modal-toggle="add-syukur{{$jadwal->id}}" class="block px-4 py-2 hover:bg-gray-100 cursor-pointer">+Syukur</a>
+            </li>
+          </ul>
+      </div>
+
         <div id="add-umum-{{$jadwal->id}}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
           <div class="relative p-4 w-full max-w-sm max-h-full">
               <!-- Modal content -->
@@ -64,7 +84,6 @@
           </div>
       </div>
 
-        <button data-modal-target="add-perpuluhan-{{$jadwal->id}}" data-modal-toggle="add-perpuluhan-{{$jadwal->id}}" class="py-0.5 px-1  bg-primary/80 font-semibold text-sm rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 text-white">+Perpuluhan</button>
         <div id="add-perpuluhan-{{$jadwal->id}}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
           <div class="relative p-4 w-full max-w-sm max-h-full">
               <!-- Modal content -->
@@ -109,8 +128,6 @@
           </div>
       </div>
 
-
-        <button data-modal-target="add-istimewa-{{$jadwal->id}}" data-modal-toggle="add-istimewa-{{$jadwal->id}}" class="py-0.5 px-1  bg-primary/80 font-semibold text-sm rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 text-white">+Istimewa</button>
         <div id="add-istimewa-{{$jadwal->id}}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
           <div class="relative p-4 w-full max-w-sm max-h-full">
               <!-- Modal content -->
@@ -156,7 +173,7 @@
       </div>
 
 
-        <button data-modal-target="add-syukur{{$jadwal->id}}" data-modal-toggle="add-syukur{{$jadwal->id}}" class="py-0.5 px-1  bg-primary/80 font-semibold text-sm rounded-lg block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 text-white">+Syukur</button>
+        
         <div id="add-syukur{{$jadwal->id}}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
           <div class="relative p-4 w-full max-w-sm max-h-full">
               <!-- Modal content -->
@@ -206,7 +223,7 @@
                   Foto
               </th>
               <th scope="col" class="px-6 py-3">
-                  Pelaksana
+                  Waktu
               </th>
               <th scope="col" class="px-6 py-3">
                   Aksi
@@ -218,17 +235,15 @@
               <td class="px-6 py-3">
                 {{$jadwal->deskripsi}}
               </td>
-              <td class="px-6 py-4">
-                <div class="grid grid-cols-5">
+              <td class="px-6 py-3">
+                <div class="flex">
                     @foreach (explode(',', $jadwal->foto) as $image)
                     <img src="{{ asset('foto/' . $image) }}" width="100px">
                 @endforeach
-              </div>
+                </div>
               </td>
               <td class="px-6 py-3">
-                Pendeta {{$jadwal->pembawafirman->nama}} </br>
-                Proyektor {{$jadwal->lcdjemaat->nama}} </br>
-                Keyboard {{$jadwal->keyboardjemaat->nama}}
+                {{$jadwal->waktu}}
               </td>
               <td class="flex px-6 py-3">
                   <a href={{url('admin/riwayat/'.$jadwal->id.'/edit')}} class="font-medium text-blue-600  hover:underline">
@@ -236,8 +251,70 @@
                     <path fill-rule="evenodd" d="M11.32 6.176H5c-1.105 0-2 .949-2 2.118v10.588C3 20.052 3.895 21 5 21h11c1.105 0 2-.948 2-2.118v-7.75l-3.914 4.144A2.46 2.46 0 0 1 12.81 16l-2.681.568c-1.75.37-3.292-1.263-2.942-3.115l.536-2.839c.097-.512.335-.983.684-1.352l2.914-3.086Z" clip-rule="evenodd"/>
                     <path fill-rule="evenodd" d="M19.846 4.318a2.148 2.148 0 0 0-.437-.692 2.014 2.014 0 0 0-.654-.463 1.92 1.92 0 0 0-1.544 0 2.014 2.014 0 0 0-.654.463l-.546.578 2.852 3.02.546-.579a2.14 2.14 0 0 0 .437-.692 2.244 2.244 0 0 0 0-1.635ZM17.45 8.721 14.597 5.7 9.82 10.76a.54.54 0 0 0-.137.27l-.536 2.84c-.07.37.239.696.588.622l2.682-.567a.492.492 0 0 0 .255-.145l4.778-5.06Z" clip-rule="evenodd"/>
                   </svg>
-                  </a>
+                  </a> 
+                  <button data-modal-target="large-modal-{{ $jadwal->id }}" data-modal-toggle="large-modal-{{ $jadwal->id }}" type="button" >
+                    <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z" clip-rule="evenodd"/>
+                    </svg>
+                    
+                </button>
+                <div id="large-modal-{{ $jadwal->id }}" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                 <div class="relative w-full max-w-xl max-h-full">
+                     <!-- Modal content -->
+                     <div class="relative bg-white rounded-lg shadow-md ">
+                       <!-- Modal header -->
+                       <div class="flex items-center justify-between p-4 border-b rounded-t ">
+                         <h2 class="text-lg font-semibold text-gray-800 uppercase ">
+                           Detail {{$jadwal->jenis}} {{$jadwal->nama}}
+                         </h2>
+                         <button type="button" class="text-gray-500 hover:text-gray-700 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center" data-modal-hide="large-modal-{{ $jadwal->id }}">
+                           <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                           </svg>
+                           <span class="sr-only">Close modal</span>
+                         </button>
+                       </div>
+                       <div class="p-4">
+                        <div class="mb-4">
+                            <strong>Deskripsi:</strong>
+                            <p>{{$jadwal->deskripsi}}</p>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Waktu:</strong>
+                            <p>{{$jadwal->waktu}}</p>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Pembawa Firman:</strong>
+                            <p>{{$jadwal->pembawafirman->nama}}</p>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Proyektor:</strong>
+                            <p>{{$jadwal->lcdjemaat->nama}}</p>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Keyboard:</strong>
+                            <p>{{$jadwal->keyboardjemaat->nama}}</p>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Warta:</strong>
+                            <p>{{$jadwal->warta_id}}</p>
+                        </div>
+                        <div class="mb-4">
+                          <strong>Dokumentasi:</strong>
+                          <div class="flex gap-1">
+                            @foreach (explode(',', $jadwal->foto) as $image)
+                                <img src="{{ asset('foto/' . $image) }}" width="100px" alt="Gambar jadwal" class="rounded-md">
+                            @endforeach
+                        </div>
+                        </div>
+                        
+                    </div>
+                       </div>                  
+                     </div>
+                 </div>
+             </div>   
               </td>
+
           </tr>
       </tbody>
   </table>
@@ -248,7 +325,7 @@
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
           <tr>
             <th scope="col" class="px-6 py-2">
-              Tipe
+              Persembahan
           </th>
           <th scope="col" class="px-6 py-2">
               Jemaat
