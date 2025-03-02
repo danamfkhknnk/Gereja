@@ -5,49 +5,19 @@
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 ">
         <div class="bg-white rounded-lg shadow-md p-4">            
-              <img class="w-full h-20 object-cover rounded-t-lg" height="200" src="{{ asset('gambarkamar/') }}" width="300"/>
-          <div class="p-4">
-           <h2 class="text-xl font-bold mb-2">
-            Jabatan
+             
+          <div class="p-2">
+           <h2 class="text-xl font-bold mb-1">
+            Jabatan :
            </h2>
            <p class="text-gray-700 mb-2">
             Nama
            </p>                            
             </div>
         </div>
-        <div class="bg-white rounded-lg shadow-md p-4">            
-              <img class="w-full h-20 object-cover rounded-t-lg" height="100" src="{{ asset('gambarkamar/') }}" width="100"/>
-          <div class="p-4">
-           <h2 class="text-xl font-bold mb-2">
-            Jabatan
-           </h2>
-           <p class="text-gray-700 mb-2">
-            Nama
-           </p>                            
-            </div>
-        </div>
-        <div class="bg-white rounded-lg shadow-md p-4">            
-              <img class="w-full h-20 object-cover rounded-t-lg" height="100" src="{{ asset('gambarkamar/') }}" width="100"/>
-          <div class="p-4">
-           <h2 class="text-xl font-bold mb-2">
-            Jabatan
-           </h2>
-           <p class="text-gray-700 mb-2">
-            Nama
-           </p>                            
-            </div>
-        </div>
-        <div class="bg-white rounded-lg shadow-md p-4">            
-              <img class="w-full h-20 object-cover rounded-t-lg" height="100" src="{{ asset('gambarkamar/') }}" width="100"/>
-          <div class="p-4">
-           <h2 class="text-xl font-bold mb-2">
-            Jabatan
-           </h2>
-           <p class="text-gray-700 mb-2">
-            Nama
-           </p>                            
-            </div>
-        </div>
+        
+        
+        
         </div>
     </section>
   </div>

@@ -36,6 +36,9 @@ Route::post('/admin/jemaat/{id}/edit', [App\Http\Controllers\JemaatController::c
 Route::get('/admin/jemaat/{id}/delete', [App\Http\Controllers\JemaatController::class, 'delete'])->name('deleteJemaat');
 
 Route::get('/admin/keuangan', [App\Http\Controllers\KeuanganController::class, 'index'])->name('keuangan');
+Route::get('/admin/keuangan/{id}/delete', [App\Http\Controllers\KeuanganController::class, 'deletePersembahan']);
+Route::get('/admin/keuangan/{id}/delete', [App\Http\Controllers\KeuanganController::class, 'delete']);
+Route::post('/admin/keuangan/keluar', [App\Http\Controllers\KeuanganController::class, 'pengeluaran']);
 
 Route::get('/admin/pengurus', [App\Http\Controllers\PengurusController::class, 'index'])->name('pengurus');
 Route::post('/admin/pengurus/tambah', [App\Http\Controllers\PengurusController::class, 'add'])->name('addPengurus');

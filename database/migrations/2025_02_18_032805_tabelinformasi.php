@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('ig',255);
             $table->string('fb', 255);
             $table->text('alamat');
-            $table->string('galeri');
+            $table->text('galeri');
             $table->string('logo');
             $table->timestamps();
         });

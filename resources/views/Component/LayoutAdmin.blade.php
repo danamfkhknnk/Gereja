@@ -21,7 +21,7 @@
                   </svg>
                </button>
               <a class="flex ms-2 md:me-24" href="{{url('/')}}">
-                  {{-- <img src="{{ asset('home') }}"  class="lg:w-[50px] w-[50px]" alt="logo"> --}}
+                  <img src="{{ asset('informasi/'. $info->logo) }}"  class="w-[40px]" alt="logo">
                 <span class="self-center text-xl font-bold sm:text-2xl whitespace-nowrap text-secondary uppercase ">GITJ PUNCEL</span>
               </a>
             </div>

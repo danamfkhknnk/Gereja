@@ -35,8 +35,6 @@ class PersembahanController extends Controller
     }
 
     public function delete($id){
-
-
         $persembahan = Persembahan::findOrFail($id);
         $persembahan->keuangan()->delete();
         $persembahan->delete();

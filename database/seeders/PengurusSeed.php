@@ -34,6 +34,14 @@ class PengurusSeed extends Seeder
         ],
         [
             'jemaat_id' => null,
+            'posisi' => 'Wakil Bendahara Umum'
+        ],
+        [
+            'jemaat_id' => null,
+            'posisi' => 'Wakil Bendahara Umum'
+        ],
+        [
+            'jemaat_id' => null,
             'posisi' => 'Guru Sekolah Minggu'
         ],
         [

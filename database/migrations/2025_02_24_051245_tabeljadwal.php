@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('pembawa_firman'); // Kolom relasi pembawa firman
             $table->unsignedBigInteger('keyboard'); // Kolom relasi keyboard
             $table->unsignedBigInteger('lcd'); // Kolom relasi lcd
-            $table->string('foto')->nullable(); // Kolom foto
+            $table->text('foto')->nullable(); // Kolom foto
 
             // Definisikan foreign key
             $table->foreign('pembawa_firman')->references('id')->on('jemaats');

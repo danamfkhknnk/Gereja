@@ -2,9 +2,9 @@
 @section('content')
        <div class="grid lg:grid-cols-4 grid-cols-2 gap-4 mb-4">
           <div class="bg-white shadow-md rounded-lg p-2">
-            <h2 class="text-xl font-semibold">Jumlah Jemaah</h2>
+            <h2 class="text-xl font-semibold">Jumlah JemaaT</h2>
             
-            <p class="text-md font-sm">56 Jemaah </p>
+            <p class="text-md font-sm">{{$jemaat}} Jemaah </p>
           </div>
           <div class="bg-white shadow-md rounded-lg p-2">
             <h2 class="text-xl font-semibold">Jumlah Kas</h2>

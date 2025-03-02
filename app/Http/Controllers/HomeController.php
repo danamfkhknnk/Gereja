@@ -10,8 +10,5 @@ class HomeController extends Controller
     {
         return view('Home.Layout');
     }
-    public function tes()
-    {
-        return view('tes');
-    }
+
 }

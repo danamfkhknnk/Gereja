@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Informasi;
 use App\Models\Jadwal;
 use App\Models\Jemaat;
 use App\Models\Warta;
@@ -19,9 +20,9 @@ class JadwalController extends Controller
         $lcd = Jemaat::all();
         $wartaadd = warta::all();
         $wartasel = warta::all();
-
+        $info = Informasi::first();
         $jadwals = Jadwal::with('pembawafirman','keyboardjemaat','lcdjemaat')->where('status','pending')->get();
-        return view('Admin.Jadwal.Jadwal', compact('jadwals','wartasel','firman','keyboard','lcd','wartaadd'));
+        return view('Admin.Jadwal.Jadwal', compact('jadwals','info','wartasel','firman','keyboard','lcd','wartaadd'));
     }
 
     public function update($id){
