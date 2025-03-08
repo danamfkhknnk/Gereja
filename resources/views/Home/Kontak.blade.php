@@ -7,8 +7,8 @@
         </div>
           <div class="grid-cols-1 lg:grid-cols-2 grid  ">
             <div class="px-4">
-            <h2 class="font-bold uppercase text-xl">gereja</h2>
-              <p class="text-lg text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta eveniet doloremque debitis. </p>
+            <h2 class="font-bold uppercase text-xl">Gitj Puncel</h2>
+              <p class="text-lg text-justify">{{$info->alamat}}</p>
               <div>
                 <div class="flex mt-2 gap-1 items-center">
                   <a href={{'https://wa.me/'.$info->wa.'?text=Halo%20Admin'}} >
@@ -32,7 +32,7 @@
             </div>
             <div class="">
               <div class="flex items-center justify-center py-2">
-                <iframe class="rounded-xl shadow-md lg:w-[625px] lg:h-[240px] md:w-[500px] md:h-[200px]  w-[340px] h-[200px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.557814483947!2d110.85233511051402!3d-6.823508193145836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70c4e2a43bef31%3A0x6c06510a5bf0227f!2sKOS%20Putra%20dan%20Jus%20Bunda!5e0!3m2!1sid!2sid!4v1733735913823!5m2!1sid!2sid"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe class="rounded-xl shadow-md lg:w-[625px] lg:h-[240px] md:w-[500px] md:h-[200px]  w-[340px] h-[200px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.6201041256627!2d110.98030951051047!3d-6.4428022935215905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e713174414da7ad%3A0x72bf63a99e1992e1!2sGITJ%20Puncel!5e0!3m2!1sid!2sid!4v1741419591743!5m2!1sid!2sid"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
             </div>
           </div>

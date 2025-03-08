@@ -2,14 +2,11 @@
     <div class="relative w-full h-screen ">
      <div class="flex flex-col absolute inset-0 h-screen justify-center text-center items-center text-white z-20">
       <div class="w-full bg-primary/30 shadow-sm p-5" data-aos="fade-up">
-        <p class="lg:text-4xl text-md  md:text-3xl font-extrabold uppercase">
+        <p class="lg:text-5xl text-md  md:text-3xl font-extrabold uppercase">
           GITJ PUNCEL
         </p>
-        <p class=" text-md md:text-3xl uppercase font-mono">
+        <p class=" text-md md:text-4xl uppercase font-mono">
           "Gereja Injili di Tanah Jawa"
-        </p>
-        <p class=" text-md md:text-xl text-center uppercase font-mono">
-          "{{$info->visi}}"
         </p>
       </div>
      </div>

@@ -12,9 +12,9 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="relative w-full h-screen">
-     <div class="absolute inset-0 flex backdrop-blur-md flex-col justify-center text-center items-center  z-20">
+     <div class="absolute inset-0 flex backdrop-blur-sm flex-col justify-center text-center items-center  z-20">
         <form class="md:w-1/3 max-w-sm bg-secondary/75 p-10 rounded-xl shadow-lg" action="{{url('/login')}}" method="POST">
-            @csrf          
+            @csrf   
             <div class="text-center ">
               <h3 class="mr-1 mb-2 font-bold text-2xl text-dark uppercase">LOGIN ADMIN</h3>
               @if (Session::has('message'))
@@ -54,12 +54,11 @@
      </div>
      <div class="relative w-full h-full z-[-99]" data-carousel="slide" id="testimonialCarousel">
       <div class="relative h-full overflow-hidden rounded-lg ">
+        @foreach (explode(',', $info->galeri) as $image)
        <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
-        <img src="{{ asset('assets/1.jpg')}}" class="absolute right-0 top-0 w-full object-cover h-full " alt="">
+        <img src="{{ asset('informasi/'.$image)}}" class="absolute right-0 top-0 w-full object-cover h-full " alt="">
        </div>
-       <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
-        <img src="{{ asset('assets/2.jpg')}}" class="absolute right-0 top-0 w-full object-cover h-full " alt="">
-       </div>
+       @endforeach
       </div>
     </div>
     </div>

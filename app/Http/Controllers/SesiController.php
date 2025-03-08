@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Informasi;
 use App\Models\User;
 use Dotenv\Util\Regex;
 use Illuminate\Http\Request;
@@ -11,7 +12,10 @@ use Illuminate\Support\Facades\Session;
 class SesiController extends Controller
 {
     public function login (){
-        return view('Component.Login');
+
+        $info = Informasi::first();
+
+        return view('Component.Login', compact('info'));
     }
 
     public function index(){

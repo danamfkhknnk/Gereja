@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KeuanganController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -39,6 +40,7 @@ Route::get('/admin/keuangan', [App\Http\Controllers\KeuanganController::class, '
 Route::get('/admin/keuangan/{id}/delete', [App\Http\Controllers\KeuanganController::class, 'deletePersembahan']);
 Route::get('/admin/keuangan/{id}/delete', [App\Http\Controllers\KeuanganController::class, 'delete']);
 Route::post('/admin/keuangan/keluar', [App\Http\Controllers\KeuanganController::class, 'pengeluaran']);
+Route::get('admin/riwayat/pdf', [KeuanganController::class, 'downloadPDF'])->name('admin.keuangan.pdf');
 
 Route::get('/admin/pengurus', [App\Http\Controllers\PengurusController::class, 'index'])->name('pengurus');
 Route::post('/admin/pengurus/tambah', [App\Http\Controllers\PengurusController::class, 'add'])->name('addPengurus');

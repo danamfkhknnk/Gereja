@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Keuangan;
 use App\Models\Persembahan;
 use Illuminate\Http\Request;
@@ -9,6 +10,40 @@ use Illuminate\Support\Facades\Session;
 
 class KeuanganController extends Controller
 {
+
+    public function downloadPDF(Request $request)
+    {
+        $bulanTahun = $request->input('cari');
+
+        $totalPemasukan = Keuangan::when($bulanTahun, function ($query) use ($bulanTahun) {
+            return $query->whereMonth('tanggal', substr($bulanTahun, 5, 2))
+                         ->whereYear('tanggal', substr($bulanTahun, 0, 4));
+        })
+        ->where('status', 'masuk') // Hanya ambil yang berstatus 'masuk'
+        ->sum('jumlah'); // Mengambil total jumlah dari kolom jumlah di tabel Keuangan
+    
+        // Mengambil total pengeluaran dari tabel Keuangan
+        $totalPengeluaran = Keuangan::when($bulanTahun, function ($query) use ($bulanTahun) {
+                return $query->whereMonth('tanggal', substr($bulanTahun, 5, 2))
+                            ->whereYear('tanggal', substr($bulanTahun, 0, 4));
+            })
+            ->where('status', 'keluar') // Hanya ambil yang berstatus 'keluar'
+            ->sum('jumlah'); // Mengambil total jumlah dari kolom jumlah di tabel Keuangan
+        
+        // Menghitung jumlah yang masuk
+        $jumlahMasuk = $totalPemasukan - $totalPengeluaran;
+
+        $keuangan = Keuangan::with('jadwal','persembahan')->when($bulanTahun, function ($query) use ($bulanTahun) {
+            return $query->whereMonth('tanggal', substr($bulanTahun, 5, 2))
+                         ->whereYear('tanggal', substr($bulanTahun, 0, 4));
+        })->get();
+
+        // Load view untuk PDF
+        $pdf = PDF::loadView('Admin.Keuangan.LaporanPdf', compact('keuangan', 'totalPemasukan', 'totalPengeluaran', 'jumlahMasuk'));
+
+        // Download PDF
+        return $pdf->download('laporan_keuangan.pdf');
+    }
     public function index(Request $request){
 
         $bulanTahun = $request->input('cari');

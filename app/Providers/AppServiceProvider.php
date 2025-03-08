@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Informasi;
 use App\Models\Jadwal;
+use App\Models\Penguruses;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,7 +28,8 @@ class AppServiceProvider extends ServiceProvider
             $jadwals = Jadwal::with('pembawafirman','keyboardjemaat','lcdjemaat')->where('status','pending')->get();
             $riwayat = Jadwal::with('pembawafirman','keyboardjemaat','lcdjemaat')->where('status','selesai')->get();
 
-            $view->with(compact('info','jadwals','riwayat')); 
+            $pengurus = Penguruses::with('jemaat')->get();
+            $view->with(compact('info','jadwals','riwayat','pengurus')); 
         });
 
 

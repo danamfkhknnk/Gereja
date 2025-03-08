@@ -38,7 +38,7 @@ class PengurusController extends Controller
     public function add(Request $request ){
         $request->validate( [
             'jemaat_id' => 'required|unique:penguruses,jemaat_id|exists:jemaats,id',
-            'posisi' => 'required|unique:penguruses,posisi',
+            'posisi' => 'required',
         ]);
 
         Penguruses::create($request->all());
