@@ -2,6 +2,9 @@
     <section data-aos="fade-up" class="container">
       <div class="text-center mb-4 max-w-[700px] mx-auto">
         <h1 class="text-xl font-bold">Jadwal Kegiatan</h1>
+        <p class="pt-2 text-center text-sm">
+          Jangan lewatkan momen penting bersama! Lihat jadwal ibadah, doa bersama, dan berbagai kegiatan rohani lainnya agar Anda selalu terhubung dalam kebersamaan dan pertumbuhan iman.
+        </p>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
         @foreach ($jadwals as $jadwal)

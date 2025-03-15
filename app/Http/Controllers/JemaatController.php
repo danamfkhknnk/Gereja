@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Session;
 class JemaatController extends Controller
 {
     public function index(){
-        $jemaat = Jemaat::all();
-        return view('Admin.Jemaat.Jemaat', compact('jemaat'));
+        $jemaats = Jemaat::simplePaginate(10);
+        return view('Admin.Jemaat.Jemaat', compact('jemaats'));
     }
 
     public function add(Request $request ){

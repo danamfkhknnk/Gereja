@@ -35,6 +35,9 @@
     <div id="Kegiatan" >
         @include('Home.Kegiatan')      
     </div>
+    <div id="warta" >
+        @include('Home.Warta')      
+    </div>
     <div id="kontak">
         @include('Home.Kontak')
     </div>

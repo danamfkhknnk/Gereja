@@ -109,7 +109,7 @@
           </tr>
       </thead>
       <tbody>`
-     @foreach ($jemaat as $jemaat)
+     @foreach ($jemaats as $jemaat)
          
           <tr class="bg-white border-b  hover:bg-gray-50 ">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
@@ -194,7 +194,11 @@
               </td>
           </tr>
           @endforeach
+          
       </tbody>
   </table>
+  <div>
+    {{ $jemaats->links() }}
+  </div>
 </div>
 @endsection

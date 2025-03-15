@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Models\Informasi;
 use App\Models\Jadwal;
+use App\Models\Keuangan;
 use App\Models\Penguruses;
+use App\Models\Warta;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,14 +30,17 @@ class AppServiceProvider extends ServiceProvider
             $jadwals = Jadwal::with('pembawafirman','keyboardjemaat','lcdjemaat')->where('status','pending')->get();
             $riwayat = Jadwal::with('pembawafirman','keyboardjemaat','lcdjemaat')->where('status','selesai')->get();
 
+            
             $pengurus = Penguruses::with('jemaat')->get();
-            $view->with(compact('info','jadwals','riwayat','pengurus')); 
+            $warta = Warta::all();
+            $view->with(compact('info','jadwals','warta','riwayat','pengurus')); 
         });
 
 
         View::composer('Component.LayoutAdmin', function ($view) {
+            
             $info = Informasi::first(); 
-            $view->with('info', $info); 
+            $view->with(compact('info')); 
         });
     }
 }

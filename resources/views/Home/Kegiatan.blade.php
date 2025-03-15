@@ -2,6 +2,9 @@
     <section data-aos="fade-up" class="container">
       <div class="text-center mb-4 max-w-[700px] mx-auto">
         <h1 class="text-xl font-bold">Riwayat Kegiatan Gereja</h1>
+        <p class="pt-2 text-center text-sm">
+          Ikuti berbagai kegiatan seru dan membangun di gereja kami! Dari persekutuan doa, pelayanan sosial, hingga acara khusus—semuanya dirancang untuk mempererat kebersamaan dan menumbuhkan iman.
+        </p>
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 ">
         @foreach ($riwayat as $riwayat)
